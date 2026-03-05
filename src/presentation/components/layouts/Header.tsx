@@ -1,8 +1,9 @@
 "use client";
 
+import { SearchModal } from "@/src/presentation/components/shared/SearchModal";
 import { ThemeToggle } from "@/src/presentation/components/shared/ThemeToggle";
 import { animated, useSpring, useSprings } from "@react-spring/web";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, Search, X, Zap } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -20,6 +21,7 @@ const NAV_ITEMS = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,13 +99,33 @@ export function Header() {
                 <NavLink item={NAV_ITEMS[index]} />
               </animated.div>
             ))}
-            <div className="ml-4 pl-4 border-l border-border-light dark:border-border-dark">
+            <div className="ml-4 pl-4 border-l border-border-light dark:border-border-dark flex items-center gap-2">
+              <button
+                onClick={() => setIsSearchOpen(true)}
+                className="w-10 h-10 rounded-xl flex items-center justify-center
+                  bg-zeus-blue-50 dark:bg-zeus-blue-900/30
+                  hover:bg-zeus-blue-100 dark:hover:bg-zeus-blue-900/50
+                  transition-colors cursor-pointer text-text-primary-light dark:text-text-primary-dark"
+                aria-label="Open search"
+              >
+                <Search className="w-5 h-5" />
+              </button>
               <ThemeToggle />
             </div>
           </nav>
 
           {/* Mobile Controls */}
           <div className="flex items-center gap-2 md:hidden">
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="w-10 h-10 rounded-xl flex items-center justify-center
+                bg-zeus-blue-50 dark:bg-zeus-blue-900/30
+                hover:bg-zeus-blue-100 dark:hover:bg-zeus-blue-900/50
+                transition-colors cursor-pointer text-text-primary-light dark:text-text-primary-dark"
+              aria-label="Open search"
+            >
+              <Search className="w-5 h-5" />
+            </button>
             <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -145,6 +167,9 @@ export function Header() {
           </nav>
         </animated.div>
       )}
+
+      {/* Search Modal */}
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
   );
 }

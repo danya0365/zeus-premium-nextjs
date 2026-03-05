@@ -14,7 +14,8 @@ import {
     MessageCircle,
     Phone,
     Send,
-    Zap,
+    XCircle,
+    Zap
 } from "lucide-react";
 import { useState } from "react";
 
@@ -25,6 +26,13 @@ interface ContactViewProps {
 export function ContactView({ initialViewModel }: ContactViewProps) {
   const [state] = useContactPresenter(initialViewModel);
   const viewModel = state.viewModel;
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 5000); // Hide after 5 seconds
+  };
 
   const heroSpring = useSpring({
     from: { opacity: 0, y: 30 },
@@ -179,7 +187,24 @@ export function ContactView({ initialViewModel }: ContactViewProps) {
                     </div>
                   </div>
 
-                  <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                  {showAlert && (
+                    <animated.div 
+                      style={useSpring({ from: { opacity: 0, scale: 0.9 }, to: { opacity: 1, scale: 1 } })}
+                      className="mb-6 p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700/50 flex items-start gap-3"
+                    >
+                      <XCircle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="text-sm font-semibold text-amber-800 dark:text-amber-300">
+                          แจ้งเตือนการใช้งาน
+                        </h4>
+                        <p className="text-sm text-amber-700 dark:text-amber-400 mt-1">
+                          ระบบส่งข้อความกำลังอยู่ในช่วงพัฒนา กรุณาติดต่อผ่านเบอร์โทรศัพท์หรือแอพพลิเคชั่น LINE แทนในขณะนี้ ขออภัยในความไม่สะดวกครับ
+                        </p>
+                      </div>
+                    </animated.div>
+                  )}
+
+                  <form className="space-y-5" onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <FormField label="ชื่อ-นามสกุล" placeholder="กรุณากรอกชื่อ" id="contact-name" />
                       <FormField label="เบอร์โทร" placeholder="0xx-xxx-xxxx" type="tel" id="contact-phone" />
@@ -230,12 +255,14 @@ export function ContactView({ initialViewModel }: ContactViewProps) {
                       />
                     </div>
 
-                    <AnimatedButton variant="primary" size="lg">
-                      <span className="flex items-center gap-2">
-                        <Send className="w-5 h-5" />
-                        ส่งข้อความ
-                      </span>
-                    </AnimatedButton>
+                    <button type="submit" className="w-full sm:w-auto">
+                      <AnimatedButton variant="primary" size="lg">
+                        <span className="flex items-center justify-center gap-2">
+                          <Send className="w-5 h-5" />
+                          ส่งข้อความ
+                        </span>
+                      </AnimatedButton>
+                    </button>
                   </form>
                 </div>
               </AnimatedSection>
