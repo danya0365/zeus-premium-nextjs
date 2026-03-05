@@ -1,5 +1,6 @@
 "use client";
 
+import { VirtualLogoMockup } from "@/src/presentation/components/products/VirtualLogoMockup";
 import { AddToQuoteButton } from "@/src/presentation/components/shared/AddToQuoteButton";
 import { AnimatedButton } from "@/src/presentation/components/shared/AnimatedButton";
 import { AnimatedSection } from "@/src/presentation/components/shared/AnimatedSection";
@@ -93,11 +94,13 @@ export function ProductDetailView({ viewModel }: ProductDetailViewProps) {
           </Link>
 
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-start">
-            {/* Icon showcase */}
-            <div className="zeus-card p-10 sm:p-16 flex items-center justify-center">
-              <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl zeus-gradient-bg flex items-center justify-center shadow-xl">
-                <IconComponent className="w-16 h-16 sm:w-20 sm:h-20 text-white" />
-              </div>
+            {/* Virtual Logo Mockup */}
+            <div className="w-full">
+              <VirtualLogoMockup
+                productName={product.name}
+                // Using a placeholder blank product image for demonstration
+                productImageSrc="https://images.unsplash.com/photo-1544365558-35aa4afcf11f?q=80&w=800&auto=format&fit=crop"
+              />
             </div>
 
             {/* Info */}
