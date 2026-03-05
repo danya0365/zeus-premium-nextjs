@@ -1,3 +1,4 @@
+import { seoConfig } from "@/src/config/seo.config";
 import { HomeView } from "@/src/presentation/components/home/HomeView";
 import { createServerHomePresenter } from "@/src/presentation/presenters/home/HomePresenterServerFactory";
 import type { Metadata } from "next";
@@ -17,8 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
   } catch (error) {
     console.error("Error generating metadata:", error);
     return {
-      title: "Zeus Premium | รับผลิตของพรีเมียมครบวงจร",
-      description: "รับผลิตของพรีเมียมครบวงจร คุณภาพสูง ดีไซน์ทันสมัย",
+      title: seoConfig.home.title,
+      description: seoConfig.home.description,
     };
   }
 }

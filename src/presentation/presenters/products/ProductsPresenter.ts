@@ -8,6 +8,7 @@ import {
     IProductCategoryRepository,
     ProductCategory,
 } from "@/src/application/repositories/IProductCategoryRepository";
+import { seoConfig } from "@/src/config/seo.config";
 import { Metadata } from "next";
 
 export interface ProductsViewModel {
@@ -30,9 +31,8 @@ export class ProductsPresenter {
 
   generateMetadata(): Metadata {
     return {
-      title: "สินค้าพรีเมียม | Zeus Premium",
-      description:
-        "หมวดหมู่สินค้าพรีเมียมครบวงจร กระเป๋าผ้า พัด หมวก เสื้อ แก้ว เครื่องเขียน บรรจุภัณฑ์ ออกแบบฟรี สั่งผลิตขั้นต่ำเพียง 100 ชิ้น",
+      title: seoConfig.products.title,
+      description: seoConfig.products.description,
     };
   }
 }

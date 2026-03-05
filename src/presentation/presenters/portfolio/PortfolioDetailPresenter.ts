@@ -3,6 +3,7 @@
  * Handles business logic for individual portfolio project detail page
  */
 
+import { seoConfig } from "@/src/config/seo.config";
 import { Metadata } from "next";
 import { PortfolioProject } from "./PortfolioPresenter";
 
@@ -115,11 +116,11 @@ export class PortfolioDetailPresenter {
   generateMetadata(id: string): Metadata {
     const project = ALL_PROJECTS.find((p) => p.id === id);
     if (!project) {
-      return { title: "ไม่พบผลงาน | Zeus Premium" };
+      return { title: seoConfig.notFound.title };
     }
     return {
-      title: `${project.title} | Zeus Premium`,
-      description: `ผลงาน${project.title} - ${project.client} | Zeus Premium`,
+      title: seoConfig.portfolioDetail.titleTemplate(project.title),
+      description: seoConfig.portfolioDetail.descriptionTemplate(project.title, project.client),
     };
   }
 }

@@ -7,6 +7,7 @@ import {
     CompanyInfo,
     ICompanyInfoRepository,
 } from "@/src/application/repositories/ICompanyInfoRepository";
+import { seoConfig } from "@/src/config/seo.config";
 import { Metadata } from "next";
 
 export interface FAQItem {
@@ -61,9 +62,8 @@ export class ContactPresenter {
 
   generateMetadata(): Metadata {
     return {
-      title: "ติดต่อเรา | Zeus Premium",
-      description:
-        "ติดต่อ Zeus Premium สอบถามราคา สั่งผลิตของพรีเมียม โทร 063-878-7995 หรือ LINE @zeuspremium",
+      title: seoConfig.contact.title,
+      description: seoConfig.contact.description,
     };
   }
 }

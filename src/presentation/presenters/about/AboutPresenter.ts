@@ -9,6 +9,7 @@ import {
     CompanyStat,
     ICompanyInfoRepository,
 } from "@/src/application/repositories/ICompanyInfoRepository";
+import { seoConfig } from "@/src/config/seo.config";
 import { Metadata } from "next";
 
 export interface TimelineEvent {
@@ -103,9 +104,8 @@ export class AboutPresenter {
 
   generateMetadata(): Metadata {
     return {
-      title: "เกี่ยวกับเรา | Zeus Premium",
-      description:
-        "รู้จัก Zeus Premium ผู้เชี่ยวชาญด้านการผลิตสินค้าพรีเมียมครบวงจร ด้วยประสบการณ์กว่า 10 ปี",
+      title: seoConfig.about.title,
+      description: seoConfig.about.description,
     };
   }
 }

@@ -7,6 +7,7 @@ import {
     IProductCategoryRepository,
     ProductCategory,
 } from "@/src/application/repositories/IProductCategoryRepository";
+import { seoConfig } from "@/src/config/seo.config";
 import { Metadata } from "next";
 
 export interface ProductSpec {
@@ -54,10 +55,10 @@ export class ProductDetailPresenter {
   async generateMetadata(slug: string): Promise<Metadata> {
     const product = await this.productCategoryRepo.getBySlug(slug);
     if (!product) {
-      return { title: "ไม่พบสินค้า | Zeus Premium" };
+      return { title: seoConfig.notFound.title };
     }
     return {
-      title: `${product.name} | Zeus Premium`,
+      title: seoConfig.productDetail.titleTemplate(product.name),
       description: product.description,
     };
   }

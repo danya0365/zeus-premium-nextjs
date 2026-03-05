@@ -4,13 +4,14 @@
  */
 
 import {
-    CompanyStat,
-    ICompanyInfoRepository,
+  CompanyStat,
+  ICompanyInfoRepository,
 } from "@/src/application/repositories/ICompanyInfoRepository";
 import {
-    IProductCategoryRepository,
-    ProductCategory,
+  IProductCategoryRepository,
+  ProductCategory,
 } from "@/src/application/repositories/IProductCategoryRepository";
+import { seoConfig } from "@/src/config/seo.config";
 import { Metadata } from "next";
 
 export interface PortfolioProject {
@@ -125,9 +126,8 @@ export class PortfolioPresenter {
 
   generateMetadata(): Metadata {
     return {
-      title: "ผลงาน | Zeus Premium",
-      description:
-        "ตัวอย่างผลงานผลิตสินค้าพรีเมียม กระเป๋าผ้า หมวก เสื้อ แก้ว เครื่องเขียน จากลูกค้ากว่า 1,500 ราย",
+      title: seoConfig.portfolio.title,
+      description: seoConfig.portfolio.description,
     };
   }
 }

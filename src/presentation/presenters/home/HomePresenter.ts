@@ -5,15 +5,16 @@
  */
 
 import {
-    CompanyFeature,
-    CompanyInfo,
-    CompanyStat,
-    ICompanyInfoRepository,
+  CompanyFeature,
+  CompanyInfo,
+  CompanyStat,
+  ICompanyInfoRepository,
 } from "@/src/application/repositories/ICompanyInfoRepository";
 import {
-    IProductCategoryRepository,
-    ProductCategory,
+  IProductCategoryRepository,
+  ProductCategory,
 } from "@/src/application/repositories/IProductCategoryRepository";
+import { seoConfig } from "@/src/config/seo.config";
 import { Metadata } from "next";
 
 export interface HomeViewModel {
@@ -62,9 +63,8 @@ export class HomePresenter {
    */
   generateMetadata(): Metadata {
     return {
-      title: "Zeus Premium | รับผลิตของพรีเมียมครบวงจร",
-      description:
-        "รับผลิตของพรีเมียมครบวงจร คุณภาพสูง ดีไซน์ทันสมัย ใส่ใจทุกรายละเอียดตั้งแต่การออกแบบจนถึงการส่งมอบ",
+      title: seoConfig.home.title,
+      description: seoConfig.home.description,
     };
   }
 }
