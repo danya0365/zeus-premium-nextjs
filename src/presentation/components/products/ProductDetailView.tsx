@@ -1,5 +1,6 @@
 "use client";
 
+import { AddToQuoteButton } from "@/src/presentation/components/shared/AddToQuoteButton";
 import { AnimatedButton } from "@/src/presentation/components/shared/AnimatedButton";
 import { AnimatedSection } from "@/src/presentation/components/shared/AnimatedSection";
 import { ProductDetailViewModel } from "@/src/presentation/presenters/products/ProductDetailPresenter";
@@ -16,14 +17,13 @@ import {
     Package,
     Pencil,
     PenTool,
-    Phone,
     ShieldCheck,
     Shirt,
     ShoppingBag,
     Sun,
     Umbrella,
     Wind,
-    type LucideIcon,
+    type LucideIcon
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -59,6 +59,10 @@ function getIcon(name: string): LucideIcon {
 export function ProductDetailView({ viewModel }: ProductDetailViewProps) {
   const { product, relatedProducts, specs } = viewModel;
   const IconComponent = getIcon(product.icon);
+
+  // Local state for quote options
+  const [quantity, setQuantity] = useState(product.minOrder);
+  const [logoOption, setLogoOption] = useState<"none" | "1-color" | "multi-color" | "laser" | "embroidery">("1-color");
 
   const heroSpring = useSpring({
     from: { opacity: 0, y: 30 },
@@ -119,16 +123,64 @@ export function ProductDetailView({ viewModel }: ProductDetailViewProps) {
                 มั่นใจในคุณภาพทุกชิ้นงาน พร้อมจัดส่งทั่วประเทศ
               </p>
 
+              <div className="bg-surface-elevated-light dark:bg-surface-elevated-dark p-6 rounded-2xl border border-border-light dark:border-border-dark mb-8">
+                <h3 className="text-sm font-bold text-text-primary-light dark:text-text-primary-dark mb-4">
+                  ระบุความต้องการเบื้องต้น
+                </h3>
+                
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1.5">
+                      จำนวนขั้นต่ำ (ชิ้น)
+                    </label>
+                    <div className="flex gap-2">
+                      {[product.minOrder, product.minOrder * 5, product.minOrder * 10].map((qty) => (
+                        <button
+                          key={qty}
+                          onClick={() => setQuantity(qty)}
+                          className={`flex-1 py-2 text-sm rounded-lg border transition-all ${
+                            quantity === qty
+                              ? "border-zeus-blue bg-zeus-blue-50 text-zeus-blue dark:bg-zeus-blue-900/20 dark:text-zeus-blue-light"
+                              : "border-border-light dark:border-border-dark text-text-secondary-light dark:text-text-secondary-dark hover:border-zeus-blue/50"
+                          }`}
+                        >
+                          {qty.toLocaleString()}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1.5">
+                      รูปแบบโลโก้
+                    </label>
+                    <select
+                      value={logoOption}
+                      onChange={(e) => setLogoOption(e.target.value as any)}
+                      className="w-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg px-3 py-2 text-sm text-text-primary-light dark:text-text-primary-dark focus:outline-none focus:ring-2 focus:ring-zeus-blue/50"
+                    >
+                      <option value="none">ไม่พิมพ์โลโก้ (สินค้าเปล่า)</option>
+                      <option value="1-color">สกรีน 1 สี</option>
+                      <option value="multi-color">สกรีนหลายสี / พิมพ์ UV</option>
+                      <option value="laser">เลเซอร์สลักชื่อ (ถ้ามี)</option>
+                      <option value="embroidery">ปักโลโก้ (สำหรับงานผ้า)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-3">
-                <AnimatedButton variant="primary" size="lg">
-                  <Link href="/contact" className="flex items-center gap-2">
-                    <Phone className="w-5 h-5" />
-                    สอบถามราคา
-                  </Link>
-                </AnimatedButton>
+                <AddToQuoteButton 
+                  productSlug={product.slug}
+                  productName={product.name}
+                  quantity={quantity}
+                  options={{ logoOption }}
+                  size="lg"
+                  className="flex-1"
+                />
                 <AnimatedButton variant="outline" size="lg">
-                  <a href={`tel:${viewModel.companyInfo.phone.replace(/-/g, "")}`} className="flex items-center gap-2">
-                    โทร {viewModel.companyInfo.phone}
+                  <a href={`tel:${viewModel.companyInfo.phone.replace(/-/g, "")}`} className="flex items-center justify-center gap-2">
+                    โทรด่วน
                   </a>
                 </AnimatedButton>
               </div>

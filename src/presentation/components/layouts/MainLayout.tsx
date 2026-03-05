@@ -2,6 +2,7 @@ import { StaticCompanyInfoRepository } from "@/src/infrastructure/repositories/s
 import { StaticProductCategoryRepository } from "@/src/infrastructure/repositories/static/StaticProductCategoryRepository";
 import { Footer } from "@/src/presentation/components/layouts/Footer";
 import { Header } from "@/src/presentation/components/layouts/Header";
+import { QuoteCartWidget } from "@/src/presentation/components/shared/QuoteCartWidget";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -27,12 +28,12 @@ export async function MainLayout({ children }: MainLayoutProps) {
       (activeCat) => !featuredCategories.some((featuredCat) => featuredCat.id === activeCat.id)
     )
   ];
-
   return (
     <div className="min-h-screen flex flex-col zeus-grid-bg">
       <Header />
       <main className="flex-1 pt-16 sm:pt-20">{children}</main>
       <Footer companyInfo={companyInfo} productCategories={combinedCategories} />
+      <QuoteCartWidget />
     </div>
   );
 }

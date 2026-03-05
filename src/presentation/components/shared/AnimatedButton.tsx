@@ -3,10 +3,10 @@
 import { animated, useSpring } from "@react-spring/web";
 import { useState } from "react";
 
-interface AnimatedButtonProps {
+export interface AnimatedButtonProps {
   children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   disabled?: boolean;

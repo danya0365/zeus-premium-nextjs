@@ -112,7 +112,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     state.viewModel.projects.length === 0 ? (
                     <div className="py-12 text-center text-text-muted-light dark:text-text-muted-dark flex flex-col items-center justify-center">
                       <Box className="w-12 h-12 text-text-muted-light/50 dark:text-text-muted-dark/50 mb-3" />
-                      <p>ไม่พบผลลัพธ์สำหรับ "{state.query}"</p>
+                      <p>ไม่พบผลลัพธ์สำหรับ &quot;{state.query}&quot;</p>
                     </div>
                   ) : state.query.length === 0 ? (
                     <div className="py-12 text-center text-text-muted-light dark:text-text-muted-dark flex flex-col items-center justify-center">
@@ -163,7 +163,7 @@ function ResultSection({
 }: {
   title: string;
   icon: React.ReactNode;
-  items: any[];
+  items: (ProductCategory | PortfolioProject)[];
   type: "product" | "portfolio";
   onItemClick: () => void;
 }) {
@@ -178,7 +178,7 @@ function ResultSection({
           <Link
             key={item.id}
             href={`/${type === "product" ? "products" : "portfolio"}/${
-              type === "product" ? item.slug : item.id
+              type === "product" ? (item as ProductCategory).slug : item.id
             }`}
             onClick={onItemClick}
             className="flex items-center gap-3 p-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 transition-colors group"

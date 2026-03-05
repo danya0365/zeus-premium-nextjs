@@ -1,5 +1,6 @@
 "use client";
 
+import { AddToQuoteButton } from "@/src/presentation/components/shared/AddToQuoteButton";
 import { AnimatedButton } from "@/src/presentation/components/shared/AnimatedButton";
 import { AnimatedSection } from "@/src/presentation/components/shared/AnimatedSection";
 import { ProductsViewModel } from "@/src/presentation/presenters/products/ProductsPresenter";
@@ -271,43 +272,50 @@ function ProductDetailCard({
   });
 
   return (
-    <Link href={`/products/${slug}`} className="block h-full">
+    <div className="block h-full">
     <animated.div
       style={spring}
       className="zeus-card p-6 cursor-pointer group h-full flex flex-col"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="flex items-start gap-4 mb-4">
+      <Link href={`/products/${slug}`} className="flex items-start gap-4 mb-4">
         <animated.div
-          style={iconSpring}
-          className="w-14 h-14 rounded-2xl bg-zeus-blue-50 dark:bg-zeus-blue-900/30
-            flex items-center justify-center shrink-0
-            text-zeus-blue dark:text-zeus-blue-light
-            group-hover:bg-zeus-blue group-hover:text-white
-            dark:group-hover:bg-zeus-blue transition-colors duration-300"
-        >
-          {icon}
-        </animated.div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-lg font-bold text-text-primary-light dark:text-text-primary-dark mb-1">
-            {name}
-          </h3>
-          <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">
-            {description}
-          </p>
-        </div>
-      </div>
+           style={iconSpring}
+           className="w-14 h-14 rounded-2xl bg-zeus-blue-50 dark:bg-zeus-blue-900/30
+             flex items-center justify-center shrink-0
+             text-zeus-blue dark:text-zeus-blue-light
+             group-hover:bg-zeus-blue group-hover:text-white
+             dark:group-hover:bg-zeus-blue transition-colors duration-300"
+         >
+           {icon}
+         </animated.div>
+         <div className="flex-1 min-w-0">
+           <h3 className="text-lg font-bold text-text-primary-light dark:text-text-primary-dark mb-1 group-hover:text-zeus-blue dark:group-hover:text-zeus-blue-light transition-colors">
+             {name}
+           </h3>
+           <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark leading-relaxed line-clamp-2">
+             {description}
+           </p>
+         </div>
+      </Link>
 
-      <div className="mt-auto pt-4 border-t border-border-light dark:border-border-dark flex items-center justify-between">
-        <span className="text-xs text-text-muted-light dark:text-text-muted-dark">
-          ขั้นต่ำ {minOrder.toLocaleString()} ชิ้น
-        </span>
-        <span className="text-xs font-medium text-zeus-blue dark:text-zeus-blue-light flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          สอบถามเพิ่มเติม <ArrowRight className="w-3 h-3" />
-        </span>
+      <div className="mt-auto pt-4 border-t border-border-light dark:border-border-dark flex flex-col gap-3">
+        <div className="flex items-center justify-between">
+          <span className="text-xs text-text-muted-light dark:text-text-muted-dark">
+            ขั้นต่ำ {minOrder.toLocaleString()} ชิ้น
+          </span>
+        </div>
+        
+        <AddToQuoteButton 
+          productSlug={slug}
+          productName={name}
+          quantity={minOrder}
+          className="w-full text-sm py-2"
+          label="ขอราคา"
+        />
       </div>
     </animated.div>
-    </Link>
+    </div>
   );
 }
