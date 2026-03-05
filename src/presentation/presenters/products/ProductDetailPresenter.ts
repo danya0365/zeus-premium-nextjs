@@ -7,6 +7,7 @@ import {
     IProductCategoryRepository,
     ProductCategory,
 } from "@/src/application/repositories/IProductCategoryRepository";
+import { IProductSpecRepository } from "@/src/application/repositories/IProductSpecRepository";
 import { seoConfig } from "@/src/config/seo.config";
 import { Metadata } from "next";
 
@@ -21,20 +22,11 @@ export interface ProductDetailViewModel {
   specs: ProductSpec[];
 }
 
-/** Generate mock specs for each product category */
-function generateSpecs(product: ProductCategory): ProductSpec[] {
-  return [
-    { label: "สั่งขั้นต่ำ", value: `${product.minOrder.toLocaleString()} ชิ้น` },
-    { label: "ระยะเวลาผลิต", value: "7-15 วันทำการ" },
-    { label: "การพิมพ์", value: "สกรีน / ปั๊ม / ปัก / ดิจิตอล" },
-    { label: "ออกแบบ", value: "ฟรี ไม่มีค่าใช้จ่าย" },
-    { label: "ตัวอย่าง", value: "จัดทำ Sample ก่อนผลิตจริง" },
-    { label: "จัดส่ง", value: "ทั่วประเทศ" },
-  ];
-}
-
 export class ProductDetailPresenter {
-  constructor(private readonly productCategoryRepo: IProductCategoryRepository) {}
+  constructor(
+    private readonly productCategoryRepo: IProductCategoryRepository,
+    private readonly productSpecRepo: IProductSpecRepository
+  ) {}
 
   async getViewModel(slug: string): Promise<ProductDetailViewModel | null> {
     const product = await this.productCategoryRepo.getBySlug(slug);
@@ -45,10 +37,12 @@ export class ProductDetailPresenter {
       .filter((p) => p.id !== product.id)
       .slice(0, 4);
 
+    const specs = await this.productSpecRepo.getSpecs(product);
+
     return {
       product,
       relatedProducts,
-      specs: generateSpecs(product),
+      specs,
     };
   }
 

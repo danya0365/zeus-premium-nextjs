@@ -5,8 +5,8 @@
  */
 
 import {
-    IProductCategoryRepository,
-    ProductCategory,
+  IProductCategoryRepository,
+  ProductCategory,
 } from "@/src/application/repositories/IProductCategoryRepository";
 
 const STATIC_PRODUCT_CATEGORIES: ProductCategory[] = [
@@ -18,6 +18,14 @@ const STATIC_PRODUCT_CATEGORIES: ProductCategory[] = [
     icon: "shopping-bag",
     minOrder: 300,
     isActive: true,
+    specs: [
+      { label: "สั่งขั้นต่ำ", value: "300 ชิ้น" },
+      { label: "ระยะเวลาผลิต", value: "7-10 วันทำการ" },
+      { label: "เนื้อผ้า", value: "สปันบอนด์ 75 แกรมขึ้นไป" },
+      { label: "การพิมพ์", value: "สกรีน 1-4 สี" },
+      { label: "ตัวอย่าง", value: "จัดทำ Sample ภายใน 3 วัน" },
+      { label: "จัดส่ง", value: "ฟรีในกรุงเทพฯ และปริมณฑล" },
+    ],
   },
   {
     id: "cat-002",
@@ -108,6 +116,14 @@ const STATIC_PRODUCT_CATEGORIES: ProductCategory[] = [
     icon: "shirt",
     minOrder: 100,
     isActive: true,
+    specs: [
+      { label: "สั่งขั้นต่ำ", value: "100 ตัว" },
+      { label: "ระยะเวลาผลิต", value: "15-20 วันทำการ" },
+      { label: "เนื้อผ้า", value: "Cotton 100% / TK / TC / ผ้ากีฬา" },
+      { label: "การพิมพ์", value: "สกรีนพลาสติซอล / DFT / ซับลิเมชั่น" },
+      { label: "ไซส์", value: "S, M, L, XL, 2XL, 3XL" },
+      { label: "ป้ายคอ", value: "เปลี่ยนเป็นป้ายแบรนด์ลูกค้าได้" },
+    ],
   },
   {
     id: "cat-012",
@@ -144,6 +160,14 @@ const STATIC_PRODUCT_CATEGORIES: ProductCategory[] = [
     icon: "pen-tool",
     minOrder: 500,
     isActive: true,
+    specs: [
+      { label: "สั่งขั้นต่ำ", value: "500 ด้าม" },
+      { label: "ระยะเวลาผลิต", value: "5-10 วันทำการ" },
+      { label: "รูปแบบ", value: "ปากกาลูกลื่น / ปากกาเหล็ก / ปากกาพลาสติก" },
+      { label: "สีหมึก", value: "น้ำเงิน / ดำ" },
+      { label: "การทำโลโก้", value: "สกรีนสี / เลเซอร์ (เฉพาะปากกาเหล็ก)" },
+      { label: "บรรจุภัณฑ์", value: "ซองใส / กล่องกระดาษ (มีค่าใช้จ่ายเพิ่ม)" },
+    ],
   },
   {
     id: "cat-016",

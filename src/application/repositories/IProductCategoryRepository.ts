@@ -4,6 +4,8 @@
  * Following Clean Architecture - Application layer
  */
 
+import { ProductSpec } from "@/src/presentation/presenters/products/ProductDetailPresenter";
+
 export interface ProductCategory {
   id: string;
   slug: string;
@@ -12,6 +14,7 @@ export interface ProductCategory {
   icon: string;
   minOrder: number;
   isActive: boolean;
+  specs?: ProductSpec[];
 }
 
 export interface IProductCategoryRepository {
