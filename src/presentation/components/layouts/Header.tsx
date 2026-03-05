@@ -77,9 +77,9 @@ export function Header() {
               onMouseEnter={() => setLogoHover(true)}
               onMouseLeave={() => setLogoHover(false)}
             >
-              <div className="relative w-12 h-12 rounded-full overflow-hidden shadow-md group-hover:shadow-lg transition-all border-2 border-white dark:border-surface-dark flex items-center justify-center shrink-0">
+              <div className="relative w-12 h-12 flex items-center justify-center shrink-0">
                 <Image
-                  src="/images/zeus-avatar.jpg"
+                  src="/images/logo-no-text-transparent.png"
                   alt="Zeus Premium Avatar"
                   fill
                   className="object-cover"

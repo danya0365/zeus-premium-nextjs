@@ -41,9 +41,9 @@ export function Footer({ companyInfo, productCategories }: FooterProps) {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4 group">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden shadow-md border-2 border-white dark:border-surface-dark flex items-center justify-center shrink-0">
+              <div className="relative w-12 h-12 flex items-center justify-center shrink-0">
                 <Image
-                  src="/images/zeus-avatar.jpg"
+                  src="/images/logo-no-text-transparent.png"
                   alt="Zeus Premium Avatar"
                   fill
                   className="object-cover"
