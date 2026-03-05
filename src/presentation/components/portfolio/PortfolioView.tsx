@@ -7,26 +7,27 @@ import { PortfolioViewModel } from "@/src/presentation/presenters/portfolio/Port
 import { usePortfolioPresenter } from "@/src/presentation/presenters/portfolio/usePortfolioPresenter";
 import { animated, useSpring } from "@react-spring/web";
 import {
-    ArrowRight,
-    Award,
-    BookOpen,
-    Box,
-    Briefcase,
-    Building2,
-    CupSoda,
-    Fan,
-    Hash,
-    Package,
-    Pencil,
-    PenTool,
-    Phone,
-    ShieldCheck,
-    Shirt,
-    ShoppingBag,
-    Sun,
-    Umbrella,
-    type LucideIcon,
+  ArrowRight,
+  Award,
+  BookOpen,
+  Box,
+  Briefcase,
+  Building2,
+  CupSoda,
+  Fan,
+  Hash,
+  Package,
+  Pencil,
+  PenTool,
+  Phone,
+  ShieldCheck,
+  Shirt,
+  ShoppingBag,
+  Sun,
+  Umbrella,
+  type LucideIcon,
 } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 interface PortfolioViewProps {
@@ -170,7 +171,9 @@ export function PortfolioView({ initialViewModel }: PortfolioViewProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredProjects.map((project, index) => (
               <AnimatedSection key={project.id} delay={index * 80}>
-                <ProjectCard project={project} />
+                <Link href={`/portfolio/${project.id}`} className="block h-full">
+                  <ProjectCard project={project} />
+                </Link>
               </AnimatedSection>
             ))}
           </div>

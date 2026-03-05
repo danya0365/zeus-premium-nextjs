@@ -25,6 +25,7 @@ import {
     Zap,
     type LucideIcon,
 } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 interface ProductsViewProps {
@@ -157,6 +158,7 @@ export function ProductsView({ initialViewModel }: ProductsViewProps) {
               return (
                 <AnimatedSection key={category.id} delay={index * 60}>
                   <ProductDetailCard
+                    slug={category.slug}
                     name={category.name}
                     description={category.description}
                     icon={<IconComponent className="w-8 h-8" />}
@@ -241,11 +243,13 @@ function FilterTab({
 }
 
 function ProductDetailCard({
+  slug,
   name,
   description,
   icon,
   minOrder,
 }: {
+  slug: string;
   name: string;
   description: string;
   icon: React.ReactNode;
@@ -267,6 +271,7 @@ function ProductDetailCard({
   });
 
   return (
+    <Link href={`/products/${slug}`} className="block h-full">
     <animated.div
       style={spring}
       className="zeus-card p-6 cursor-pointer group h-full flex flex-col"
@@ -303,5 +308,6 @@ function ProductDetailCard({
         </span>
       </div>
     </animated.div>
+    </Link>
   );
 }
