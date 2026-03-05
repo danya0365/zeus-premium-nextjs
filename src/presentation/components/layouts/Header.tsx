@@ -3,7 +3,8 @@
 import { SearchModal } from "@/src/presentation/components/shared/SearchModal";
 import { ThemeToggle } from "@/src/presentation/components/shared/ThemeToggle";
 import { animated, useSpring, useSprings } from "@react-spring/web";
-import { Menu, Search, X, Zap } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -76,16 +77,19 @@ export function Header() {
               onMouseEnter={() => setLogoHover(true)}
               onMouseLeave={() => setLogoHover(false)}
             >
-              <div className="w-10 h-10 rounded-xl zeus-gradient-bg flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-                <Zap className="w-6 h-6 text-white" fill="currentColor" />
+              <div className="relative w-12 h-12 rounded-full overflow-hidden shadow-md group-hover:shadow-lg transition-all border-2 border-white dark:border-surface-dark flex items-center justify-center shrink-0">
+                <Image
+                  src="/images/zeus-avatar.jpg"
+                  alt="Zeus Premium Avatar"
+                  fill
+                  className="object-cover"
+                />
               </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-bold tracking-tight">
-                  <span className="text-zeus-blue dark:text-zeus-blue-light">Z</span>
-                  <span className="text-zeus-blue dark:text-zeus-blue-light">EU</span>
-                  <span className="text-zeus-blue dark:text-zeus-blue-light">S</span>
+              <div className="flex flex-col justify-center">
+                <span className="text-xl font-black tracking-tight leading-none text-zeus-blue dark:text-zeus-blue-light">
+                  ZEUS
                 </span>
-                <span className="text-[10px] font-semibold tracking-[0.2em] text-text-secondary-light dark:text-text-secondary-dark -mt-1">
+                <span className="text-[11px] font-bold tracking-[0.2em] text-zeus-orange dark:text-zeus-orange-light mt-0.5">
                   PREMIUM
                 </span>
               </div>
