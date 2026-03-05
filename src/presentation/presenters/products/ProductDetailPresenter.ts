@@ -4,6 +4,10 @@
  */
 
 import {
+    CompanyInfo,
+    ICompanyInfoRepository,
+} from "@/src/application/repositories/ICompanyInfoRepository";
+import {
     IProductCategoryRepository,
     ProductCategory,
 } from "@/src/application/repositories/IProductCategoryRepository";
@@ -20,10 +24,12 @@ export interface ProductDetailViewModel {
   product: ProductCategory;
   relatedProducts: ProductCategory[];
   specs: ProductSpec[];
+  companyInfo: CompanyInfo;
 }
 
 export class ProductDetailPresenter {
   constructor(
+    private readonly companyInfoRepo: ICompanyInfoRepository,
     private readonly productCategoryRepo: IProductCategoryRepository,
     private readonly productSpecRepo: IProductSpecRepository
   ) {}
@@ -38,11 +44,13 @@ export class ProductDetailPresenter {
       .slice(0, 4);
 
     const specs = await this.productSpecRepo.getSpecs(product);
+    const companyInfo = await this.companyInfoRepo.getInfo();
 
     return {
       product,
       relatedProducts,
       specs,
+      companyInfo,
     };
   }
 

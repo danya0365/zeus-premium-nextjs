@@ -4,6 +4,7 @@
  */
 
 import {
+  CompanyInfo,
   CompanyStat,
   ICompanyInfoRepository,
 } from "@/src/application/repositories/ICompanyInfoRepository";
@@ -23,6 +24,7 @@ export interface PortfolioViewModel {
   projects: PortfolioProject[];
   categories: string[];
   stats: CompanyStat[];
+  companyInfo: CompanyInfo;
 }
 
 export class PortfolioPresenter {
@@ -39,11 +41,13 @@ export class PortfolioPresenter {
     
     // Fetch from repository instead of hardware data
     const projects = await this.portfolioProjectRepo.getAll();
+    const companyInfo = await this.companyInfoRepo.getInfo();
 
     return {
       projects,
       categories: categoryNames,
       stats,
+      companyInfo,
     };
   }
 

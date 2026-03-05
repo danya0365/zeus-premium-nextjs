@@ -192,15 +192,15 @@ export function PortfolioView({ initialViewModel }: PortfolioViewProps) {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <AnimatedButton variant="primary" size="lg">
-                <a href="/contact" className="flex items-center gap-2">
+                <Link href="/contact" className="flex items-center gap-2">
                   ปรึกษาฟรี
                   <ArrowRight className="w-5 h-5" />
-                </a>
+                </Link>
               </AnimatedButton>
               <AnimatedButton variant="outline" size="lg">
-                <a href="tel:0638787995" className="flex items-center gap-2">
+                <a href={`tel:${viewModel.companyInfo.phone.replace(/-/g, "")}`} className="flex items-center gap-2">
                   <Phone className="w-5 h-5" />
-                  โทรเลย
+                  โทร {viewModel.companyInfo.phone}
                 </a>
               </AnimatedButton>
             </div>

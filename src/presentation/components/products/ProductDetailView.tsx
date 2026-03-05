@@ -121,14 +121,14 @@ export function ProductDetailView({ viewModel }: ProductDetailViewProps) {
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <AnimatedButton variant="primary" size="lg">
-                  <a href="/contact" className="flex items-center gap-2">
+                  <Link href="/contact" className="flex items-center gap-2">
                     <Phone className="w-5 h-5" />
                     สอบถามราคา
-                  </a>
+                  </Link>
                 </AnimatedButton>
                 <AnimatedButton variant="outline" size="lg">
-                  <a href="tel:0638787995" className="flex items-center gap-2">
-                    โทร 063-878-7995
+                  <a href={`tel:${viewModel.companyInfo.phone.replace(/-/g, "")}`} className="flex items-center gap-2">
+                    โทร {viewModel.companyInfo.phone}
                   </a>
                 </AnimatedButton>
               </div>
@@ -197,10 +197,10 @@ export function ProductDetailView({ viewModel }: ProductDetailViewProps) {
               ติดต่อเพื่อขอใบเสนอราคา ออกแบบฟรี ส่งงานตรงเวลา
             </p>
             <AnimatedButton variant="primary" size="lg">
-              <a href="/contact" className="flex items-center gap-2">
+              <Link href="/contact" className="flex items-center gap-2">
                 ขอใบเสนอราคา
                 <ArrowRight className="w-5 h-5" />
-              </a>
+              </Link>
             </AnimatedButton>
           </AnimatedSection>
         </div>

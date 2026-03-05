@@ -282,11 +282,11 @@ export function HomeView({ initialViewModel }: HomeViewProps) {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <AnimatedButton variant="primary" size="lg">
                   <a
-                    href="tel:0638787995"
+                    href={`tel:${viewModel.companyInfo.phone.replace(/-/g, "")}`}
                     className="flex items-center gap-2"
                   >
                     <Phone className="w-5 h-5" />
-                    โทร 063-878-7995
+                    โทร {viewModel.companyInfo.phone}
                   </a>
                 </AnimatedButton>
                 <AnimatedButton variant="secondary" size="lg">

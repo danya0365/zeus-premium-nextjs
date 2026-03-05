@@ -288,7 +288,7 @@ export function ContactView({ initialViewModel }: ContactViewProps) {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <AnimatedButton variant="primary" size="lg">
-                <a href="tel:0638787995" className="flex items-center gap-2">
+                <a href={`tel:${viewModel.companyInfo.phone.replace(/-/g, "")}`} className="flex items-center gap-2">
                   <Phone className="w-5 h-5" />
                   โทร {viewModel.companyInfo.phone}
                 </a>

@@ -4,6 +4,10 @@
  */
 
 import {
+  CompanyInfo,
+  ICompanyInfoRepository,
+} from "@/src/application/repositories/ICompanyInfoRepository";
+import {
   IPortfolioProjectRepository,
   PortfolioProject,
 } from "@/src/application/repositories/IPortfolioProjectRepository";
@@ -14,6 +18,7 @@ export interface PortfolioDetailViewModel {
   project: PortfolioProject;
   relatedProjects: PortfolioProject[];
   highlights: string[];
+  companyInfo: CompanyInfo;
 }
 
 function generateHighlights(project: PortfolioProject): string[] {
@@ -27,7 +32,10 @@ function generateHighlights(project: PortfolioProject): string[] {
 }
 
 export class PortfolioDetailPresenter {
-  constructor(private readonly portfolioRepo: IPortfolioProjectRepository) {}
+  constructor(
+    private readonly companyInfoRepo: ICompanyInfoRepository,
+    private readonly portfolioRepo: IPortfolioProjectRepository
+  ) {}
 
   async getViewModel(id: string): Promise<PortfolioDetailViewModel | null> {
     const project = await this.portfolioRepo.getById(id);
@@ -35,11 +43,13 @@ export class PortfolioDetailPresenter {
 
     const allProjects = await this.portfolioRepo.getAll();
     const relatedProjects = allProjects.filter((p) => p.id !== id).slice(0, 3);
+    const companyInfo = await this.companyInfoRepo.getInfo();
 
     return {
       project,
       relatedProjects,
       highlights: generateHighlights(project),
+      companyInfo,
     };
   }
 

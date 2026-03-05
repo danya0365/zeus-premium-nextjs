@@ -18,6 +18,7 @@ import {
     Zap,
     type LucideIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 interface AboutViewProps {
   initialViewModel?: AboutViewModel;
@@ -275,10 +276,10 @@ export function AboutView({ initialViewModel }: AboutViewProps) {
               ไม่ว่าจะเป็นงานเล็กหรืองานใหญ่ เราพร้อมดูแลทุกโปรเจกต์อย่างใส่ใจ
             </p>
             <AnimatedButton variant="primary" size="lg">
-              <a href="/contact" className="flex items-center gap-2">
+              <Link href="/contact" className="flex items-center gap-2">
                 ติดต่อเราวันนี้
                 <ArrowRight className="w-5 h-5" />
-              </a>
+              </Link>
             </AnimatedButton>
           </AnimatedSection>
         </div>

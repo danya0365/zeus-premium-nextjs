@@ -126,8 +126,8 @@ export function PortfolioDetailView({ viewModel }: PortfolioDetailViewProps) {
                   </a>
                 </AnimatedButton>
                 <AnimatedButton variant="outline" size="lg">
-                  <a href="tel:0638787995" className="flex items-center gap-2">
-                    โทร 063-878-7995
+                  <a href={`tel:${viewModel.companyInfo.phone.replace(/-/g, "")}`} className="flex items-center gap-2">
+                    โทร {viewModel.companyInfo.phone}
                   </a>
                 </AnimatedButton>
               </div>
