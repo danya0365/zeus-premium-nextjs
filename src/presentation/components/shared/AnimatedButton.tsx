@@ -10,6 +10,7 @@ interface AnimatedButtonProps {
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   disabled?: boolean;
+  type?: "button" | "submit" | "reset";
 }
 
 const VARIANT_CLASSES = {
@@ -38,6 +39,7 @@ export function AnimatedButton({
   variant = "primary",
   size = "md",
   disabled = false,
+  type = "button",
 }: AnimatedButtonProps) {
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
@@ -53,6 +55,7 @@ export function AnimatedButton({
 
   return (
     <animated.button
+      type={type}
       style={spring}
       className={`rounded-xl font-semibold transition-colors cursor-pointer
         disabled:opacity-60 disabled:cursor-not-allowed

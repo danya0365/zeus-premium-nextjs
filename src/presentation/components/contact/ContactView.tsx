@@ -2,20 +2,20 @@
 
 import { AnimatedButton } from "@/src/presentation/components/shared/AnimatedButton";
 import { AnimatedSection } from "@/src/presentation/components/shared/AnimatedSection";
+import { StatusModal } from "@/src/presentation/components/shared/StatusModal";
 import { ContactViewModel } from "@/src/presentation/presenters/contact/ContactPresenter";
 import { useContactPresenter } from "@/src/presentation/presenters/contact/useContactPresenter";
 import { animated, useSpring } from "@react-spring/web";
 import {
-    ChevronDown,
-    Clock,
-    HelpCircle,
-    Mail,
-    MapPin,
-    MessageCircle,
-    Phone,
-    Send,
-    XCircle,
-    Zap
+  ChevronDown,
+  Clock,
+  HelpCircle,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  Send,
+  Zap
 } from "lucide-react";
 import { useState } from "react";
 
@@ -31,7 +31,6 @@ export function ContactView({ initialViewModel }: ContactViewProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 5000); // Hide after 5 seconds
   };
 
   const heroSpring = useSpring({
@@ -187,22 +186,14 @@ export function ContactView({ initialViewModel }: ContactViewProps) {
                     </div>
                   </div>
 
-                  {showAlert && (
-                    <animated.div 
-                      style={useSpring({ from: { opacity: 0, scale: 0.9 }, to: { opacity: 1, scale: 1 } })}
-                      className="mb-6 p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700/50 flex items-start gap-3"
-                    >
-                      <XCircle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                      <div>
-                        <h4 className="text-sm font-semibold text-amber-800 dark:text-amber-300">
-                          แจ้งเตือนการใช้งาน
-                        </h4>
-                        <p className="text-sm text-amber-700 dark:text-amber-400 mt-1">
-                          ระบบส่งข้อความกำลังอยู่ในช่วงพัฒนา กรุณาติดต่อผ่านเบอร์โทรศัพท์หรือแอพพลิเคชั่น LINE แทนในขณะนี้ ขออภัยในความไม่สะดวกครับ
-                        </p>
-                      </div>
-                    </animated.div>
-                  )}
+                  <StatusModal
+                    isOpen={showAlert}
+                    onClose={() => setShowAlert(false)}
+                    title="แจ้งเตือนการใช้งาน"
+                    description="ระบบส่งข้อความกำลังอยู่ในช่วงพัฒนา กรุณาติดต่อผ่านเบอร์โทรศัพท์หรือแอพพลิเคชั่น LINE แทนในขณะนี้ ขออภัยในความไม่สะดวกครับ"
+                    type="warning"
+                    actionLabel="รับทราบ"
+                  />
 
                   <form className="space-y-5" onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -255,14 +246,12 @@ export function ContactView({ initialViewModel }: ContactViewProps) {
                       />
                     </div>
 
-                    <button type="submit" className="w-full sm:w-auto">
-                      <AnimatedButton variant="primary" size="lg">
-                        <span className="flex items-center justify-center gap-2">
-                          <Send className="w-5 h-5" />
-                          ส่งข้อความ
-                        </span>
-                      </AnimatedButton>
-                    </button>
+                    <AnimatedButton type="submit" variant="primary" size="lg" className="w-full sm:w-auto">
+                      <span className="flex items-center justify-center gap-2">
+                        <Send className="w-5 h-5" />
+                        ส่งข้อความ
+                      </span>
+                    </AnimatedButton>
                   </form>
                 </div>
               </AnimatedSection>
