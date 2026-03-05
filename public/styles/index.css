@@ -3,3 +3,175 @@
 /* custom variants */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ============================================
+   Zeus Premium Design System
+   Brand: Blue (#2563EB) + Orange (#F97316)
+   ============================================ */
+
+@theme {
+  /* Brand Colors */
+  --color-zeus-blue: #2563EB;
+  --color-zeus-blue-light: #3B82F6;
+  --color-zeus-blue-dark: #1D4ED8;
+  --color-zeus-blue-50: #EFF6FF;
+  --color-zeus-blue-100: #DBEAFE;
+  --color-zeus-blue-900: #1E3A5F;
+
+  --color-zeus-orange: #F97316;
+  --color-zeus-orange-light: #FB923C;
+  --color-zeus-orange-dark: #EA580C;
+  --color-zeus-orange-50: #FFF7ED;
+
+  /* Surface Colors */
+  --color-surface-light: #FFFFFF;
+  --color-surface-dark: #0F172A;
+  --color-surface-card-light: #FFFFFF;
+  --color-surface-card-dark: #1E293B;
+  --color-surface-elevated-light: #F8FAFC;
+  --color-surface-elevated-dark: #1E293B;
+
+  /* Text Colors */
+  --color-text-primary-light: #0F172A;
+  --color-text-primary-dark: #F1F5F9;
+  --color-text-secondary-light: #475569;
+  --color-text-secondary-dark: #94A3B8;
+  --color-text-muted-light: #94A3B8;
+  --color-text-muted-dark: #64748B;
+
+  /* Border */
+  --color-border-light: #E2E8F0;
+  --color-border-dark: #334155;
+
+  /* Fonts */
+  --font-sans: 'Noto Sans Thai', system-ui, -apple-system, sans-serif;
+}
+
+/* ============================================
+   Base Layer - Light/Dark Mode
+   ============================================ */
+body {
+  @apply bg-surface-light text-text-primary-light;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  @apply bg-surface-dark text-text-primary-dark;
+}
+
+/* ============================================
+   Grid Background Pattern (from Zeus brand)
+   ============================================ */
+.zeus-grid-bg {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.dark .zeus-grid-bg {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+}
+
+/* ============================================
+   Glassmorphism
+   ============================================ */
+.zeus-glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.dark .zeus-glass {
+  background: rgba(15, 23, 42, 0.85);
+  border-bottom-color: rgba(51, 65, 85, 0.6);
+}
+
+/* ============================================
+   Gradient Utilities
+   ============================================ */
+.zeus-gradient-text {
+  background: linear-gradient(135deg, #2563EB, #3B82F6, #F97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.zeus-gradient-bg {
+  background: linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #60A5FA 100%);
+}
+
+.zeus-gradient-orange {
+  background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
+}
+
+/* ============================================
+   Decorative Blobs (from brand screenshots)
+   ============================================ */
+.zeus-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(0px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.zeus-blob-blue {
+  background: #2563EB;
+}
+
+.zeus-blob-orange {
+  background: #F97316;
+}
+
+.dark .zeus-blob {
+  opacity: 0.08;
+}
+
+/* ============================================
+   Card Styles
+   ============================================ */
+.zeus-card {
+  @apply bg-surface-card-light rounded-2xl;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease;
+}
+
+.dark .zeus-card {
+  @apply bg-surface-card-dark;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   Scrollbar
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+/* ============================================
+   Selection
+   ============================================ */
+::selection {
+  background: rgba(37, 99, 235, 0.2);
+  color: inherit;
+}
+
+.dark ::selection {
+  background: rgba(59, 130, 246, 0.3);
+}
