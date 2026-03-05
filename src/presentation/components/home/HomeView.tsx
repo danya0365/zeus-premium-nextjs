@@ -4,32 +4,34 @@ import { AnimatedButton } from "@/src/presentation/components/shared/AnimatedBut
 import { AnimatedCard } from "@/src/presentation/components/shared/AnimatedCard";
 import { AnimatedCounter } from "@/src/presentation/components/shared/AnimatedCounter";
 import { AnimatedSection } from "@/src/presentation/components/shared/AnimatedSection";
+import { ClientTrustBar } from "@/src/presentation/components/shared/ClientTrustBar";
+import { QualityProcess } from "@/src/presentation/components/shared/QualityProcess";
 import { HomeViewModel } from "@/src/presentation/presenters/home/HomePresenter";
 import { useHomePresenter } from "@/src/presentation/presenters/home/useHomePresenter";
 import { animated, useSpring } from "@react-spring/web";
 import {
-  ArrowRight,
-  BookOpen,
-  Box,
-  Briefcase,
-  CheckCircle,
-  Clock,
-  CupSoda,
-  Fan,
-  MessageCircle,
-  Package,
-  Palette,
-  Pencil,
-  PenTool,
-  Phone,
-  ShieldCheck,
-  Shirt,
-  ShoppingBag,
-  Sun,
-  Umbrella,
-  Wind,
-  Zap,
-  type LucideIcon,
+    ArrowRight,
+    BookOpen,
+    Box,
+    Briefcase,
+    CheckCircle,
+    Clock,
+    CupSoda,
+    Fan,
+    MessageCircle,
+    Package,
+    Palette,
+    Pencil,
+    PenTool,
+    Phone,
+    ShieldCheck,
+    Shirt,
+    ShoppingBag,
+    Sun,
+    Umbrella,
+    Wind,
+    Zap,
+    type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -174,6 +176,9 @@ export function HomeView({ initialViewModel }: HomeViewProps) {
         </div>
       </section>
 
+      {/* ========== CLIENT TRUST BAR ========== */}
+      <ClientTrustBar />
+
       {/* ========== PRODUCT CATEGORIES SECTION ========== */}
       <section className="py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -211,6 +216,9 @@ export function HomeView({ initialViewModel }: HomeViewProps) {
           </div>
         </div>
       </section>
+
+      {/* ========== QUALITY PROCESS SECTION ========== */}
+      <QualityProcess />
 
       {/* ========== WHY CHOOSE US SECTION ========== */}
       <section className="py-16 sm:py-24 bg-surface-elevated-light dark:bg-surface-elevated-dark">
