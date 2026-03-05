@@ -3,5 +3,3 @@
 /* custom variants */
 @custom-variant dark (&:where(.dark, .dark *));
 
-@import "./base.css";
-
