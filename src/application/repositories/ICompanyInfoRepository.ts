@@ -27,6 +27,10 @@ export interface CompanyInfo {
   lineId: string;
   lineUrl: string;
   address: string;
+  coordinates?: {
+    lat: number;
+    lng: number;
+  };
   features: CompanyFeature[];
   stats: CompanyStat[];
 }

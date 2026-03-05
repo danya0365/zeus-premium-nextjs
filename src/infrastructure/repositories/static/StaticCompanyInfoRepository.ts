@@ -5,10 +5,10 @@
  */
 
 import {
-    CompanyFeature,
-    CompanyInfo,
-    CompanyStat,
-    ICompanyInfoRepository,
+  CompanyFeature,
+  CompanyInfo,
+  CompanyStat,
+  ICompanyInfoRepository,
 } from "@/src/application/repositories/ICompanyInfoRepository";
 
 const COMPANY_FEATURES: CompanyFeature[] = [
@@ -79,6 +79,10 @@ const COMPANY_INFO: CompanyInfo = {
   lineId: "@zeuspremium",
   lineUrl: "https://line.me/ti/p/@zeuspremium",
   address: "กรุงเทพมหานคร, ประเทศไทย",
+  coordinates: {
+    lat: 13.7563,
+    lng: 100.5018,
+  },
   features: COMPANY_FEATURES,
   stats: COMPANY_STATS,
 };

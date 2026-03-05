@@ -2,6 +2,7 @@
 
 import { AnimatedButton } from "@/src/presentation/components/shared/AnimatedButton";
 import { AnimatedSection } from "@/src/presentation/components/shared/AnimatedSection";
+import { LocationMap } from "@/src/presentation/components/shared/LocationMap";
 import { StatusModal } from "@/src/presentation/components/shared/StatusModal";
 import { ContactViewModel } from "@/src/presentation/presenters/contact/ContactPresenter";
 import { useContactPresenter } from "@/src/presentation/presenters/contact/useContactPresenter";
@@ -259,6 +260,33 @@ export function ContactView({ initialViewModel }: ContactViewProps) {
           </div>
         </div>
       </section>
+
+      {/* ========== LOCATION MAP ========== */}
+      {viewModel.companyInfo.coordinates && (
+        <section className="py-12 sm:py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <AnimatedSection>
+              <div className="text-center mb-10">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zeus-blue-50 dark:bg-zeus-blue-900/30 mb-4">
+                  <MapPin className="w-4 h-4 text-zeus-blue" />
+                  <span className="text-sm font-medium text-zeus-blue dark:text-zeus-blue-light">
+                    แผนที่และการเดินทาง
+                  </span>
+                </span>
+                <h2 className="text-3xl font-extrabold text-text-primary-light dark:text-text-primary-dark">
+                  ที่ตั้งบริษัท
+                </h2>
+              </div>
+              
+              <LocationMap 
+                longitude={viewModel.companyInfo.coordinates.lng}
+                latitude={viewModel.companyInfo.coordinates.lat}
+                popupText={viewModel.companyInfo.name} 
+              />
+            </AnimatedSection>
+          </div>
+        </section>
+      )}
 
       {/* ========== FAQ ========== */}
       <section className="py-16 sm:py-24 bg-surface-elevated-light dark:bg-surface-elevated-dark">
