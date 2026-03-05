@@ -18,6 +18,7 @@ const STATIC_PRODUCT_CATEGORIES: ProductCategory[] = [
     icon: "shopping-bag",
     minOrder: 300,
     isActive: true,
+    isFeatured: true,
     specs: [
       { label: "สั่งขั้นต่ำ", value: "300 ชิ้น" },
       { label: "ระยะเวลาผลิต", value: "7-10 วันทำการ" },
@@ -44,6 +45,7 @@ const STATIC_PRODUCT_CATEGORIES: ProductCategory[] = [
     icon: "briefcase",
     minOrder: 300,
     isActive: true,
+    isFeatured: true,
   },
   {
     id: "cat-004",
@@ -71,6 +73,7 @@ const STATIC_PRODUCT_CATEGORIES: ProductCategory[] = [
     icon: "backpack",
     minOrder: 300,
     isActive: true,
+    isFeatured: true,
   },
   {
     id: "cat-007",
@@ -98,6 +101,7 @@ const STATIC_PRODUCT_CATEGORIES: ProductCategory[] = [
     icon: "hard-hat",
     minOrder: 200,
     isActive: true,
+    isFeatured: true,
   },
   {
     id: "cat-010",
@@ -116,6 +120,7 @@ const STATIC_PRODUCT_CATEGORIES: ProductCategory[] = [
     icon: "shirt",
     minOrder: 100,
     isActive: true,
+    isFeatured: true,
     specs: [
       { label: "สั่งขั้นต่ำ", value: "100 ตัว" },
       { label: "ระยะเวลาผลิต", value: "15-20 วันทำการ" },
@@ -142,6 +147,7 @@ const STATIC_PRODUCT_CATEGORIES: ProductCategory[] = [
     icon: "cup-soda",
     minOrder: 100,
     isActive: true,
+    isFeatured: true,
   },
   {
     id: "cat-014",
@@ -207,6 +213,10 @@ export class StaticProductCategoryRepository
 
   async getActive(): Promise<ProductCategory[]> {
     return STATIC_PRODUCT_CATEGORIES.filter((cat) => cat.isActive);
+  }
+
+  async getFeatured(): Promise<ProductCategory[]> {
+    return STATIC_PRODUCT_CATEGORIES.filter((cat) => cat.isActive && cat.isFeatured);
   }
 
   async getBySlug(slug: string): Promise<ProductCategory | null> {

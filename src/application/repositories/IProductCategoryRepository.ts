@@ -14,6 +14,7 @@ export interface ProductCategory {
   icon: string;
   minOrder: number;
   isActive: boolean;
+  isFeatured?: boolean;
   specs?: ProductSpec[];
 }
 
@@ -27,6 +28,11 @@ export interface IProductCategoryRepository {
    * Get active product categories only
    */
   getActive(): Promise<ProductCategory[]>;
+
+  /**
+   * Get featured product categories
+   */
+  getFeatured(): Promise<ProductCategory[]>;
 
   /**
    * Get a product category by slug

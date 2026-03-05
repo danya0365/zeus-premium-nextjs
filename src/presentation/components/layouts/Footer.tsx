@@ -1,18 +1,11 @@
 "use client";
 
+import { CompanyInfo } from "@/src/application/repositories/ICompanyInfoRepository";
+import { ProductCategory } from "@/src/application/repositories/IProductCategoryRepository";
 import { animated, useSpring } from "@react-spring/web";
 import { Mail, MapPin, Phone, Zap } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-
-const PRODUCT_LINKS = [
-  { label: "กระเป๋าผ้า", href: "/products" },
-  { label: "พัดพลาสติก", href: "/products" },
-  { label: "หมวก", href: "/products" },
-  { label: "เสื้อ", href: "/products" },
-  { label: "แก้ว & กระบอกน้ำ", href: "/products" },
-  { label: "เครื่องเขียน", href: "/products" },
-];
 
 const COMPANY_LINKS = [
   { label: "เกี่ยวกับเรา", href: "/about" },
@@ -20,11 +13,16 @@ const COMPANY_LINKS = [
   { label: "ติดต่อเรา", href: "/contact" },
 ];
 
+interface FooterProps {
+  companyInfo: CompanyInfo;
+  productCategories: ProductCategory[];
+}
+
 /**
  * Footer
  * Company information footer with animated elements
  */
-export function Footer() {
+export function Footer({ companyInfo, productCategories }: FooterProps) {
   const fadeIn = useSpring({
     from: { opacity: 0, y: 30 },
     to: { opacity: 1, y: 0 },
@@ -55,7 +53,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">
-              รับผลิตของพรีเมียมครบวงจร คุณภาพสูง ดีไซน์ทันสมัย ใส่ใจทุกรายละเอียด
+              {companyInfo.description}
             </p>
           </div>
 
@@ -65,11 +63,18 @@ export function Footer() {
               สินค้า
             </h3>
             <ul className="space-y-2.5">
-              {PRODUCT_LINKS.map((link) => (
-                <li key={link.label}>
-                  <FooterLink href={link.href}>{link.label}</FooterLink>
+              {productCategories.slice(0, 5).map((category) => (
+                <li key={category.id}>
+                  <FooterLink href={`/products/${category.slug}`}>{category.name}</FooterLink>
                 </li>
               ))}
+              {productCategories.length > 5 && (
+                <li>
+                  <FooterLink href="/products">
+                    <span className="font-semibold text-zeus-blue dark:text-zeus-blue-light">ดูสินค้าทั้งหมด &rarr;</span>
+                  </FooterLink>
+                </li>
+              )}
             </ul>
           </div>
 
@@ -96,19 +101,19 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-zeus-blue dark:text-zeus-blue-light mt-0.5 shrink-0" />
                 <span className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
-                  063-878-7995
+                  {companyInfo.phone}
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-zeus-blue dark:text-zeus-blue-light mt-0.5 shrink-0" />
                 <span className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
-                  info@zeuspremium.co.th
+                  {companyInfo.email}
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-zeus-blue dark:text-zeus-blue-light mt-0.5 shrink-0" />
                 <span className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
-                  กรุงเทพมหานคร, ประเทศไทย
+                  {companyInfo.address}
                 </span>
               </li>
             </ul>
@@ -116,7 +121,9 @@ export function Footer() {
             {/* LINE Button */}
             <div className="mt-4">
               <a
-                href="#"
+                href={companyInfo.lineUrl || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-xl
                   bg-[#06C755] hover:bg-[#05B34C] text-white text-sm font-medium
                   transition-colors shadow-sm hover:shadow-md"
@@ -134,10 +141,10 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-border-light dark:border-border-dark">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-text-muted-light dark:text-text-muted-dark">
-              © {new Date().getFullYear()} Zeus Premium. All rights reserved.
+              © {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
             </p>
             <p className="text-xs text-text-muted-light dark:text-text-muted-dark">
-              ดีไซน์โดนใจ งานไวทันใช้ มั่นใจคุณภาพ
+              {companyInfo.tagline}
             </p>
           </div>
         </div>
